@@ -1,16 +1,31 @@
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import {getKindeServerSession} from '@kinde-oss/kinde-auth-nextjs/server';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import {redirect} from 'next/navigation';
+import {db} from '@/db';
+import Dashboard from '@/components/Dashboard';
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
     const {getUser} = getKindeServerSession()
-    const user = getUser()
+    const currentUser = getUser()
+
+    if (!currentUser || !currentUser.id) {
+        redirect('/auth-callback?origin=dashboard')
+    }
+
+    const databaseUser = await db.user.findFirst({
+        where: {
+            id: currentUser.id,
+        },
+    })
+
+    if (!databaseUser) {
+        redirect('/auth-callback?origin=dashboard')
+    }
 
     return (
         <>
-            <MaxWidthWrapper className={'mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center'}>
-                <h2 className={'max-w-2xl text-2xl font-bold md:text-3xl lg:text-4xl'}>
-                    Welcome {user?.given_name}!
-                </h2>
+            <MaxWidthWrapper>
+                <Dashboard />
             </MaxWidthWrapper>
         </>
     )
