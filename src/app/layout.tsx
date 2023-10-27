@@ -4,6 +4,7 @@ import './globals.css'
 import {cn} from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Providers from '@/components/Providers';
+import React from "react";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang='en' className={'light'}>
-        <Providers>
+        <Providers url={process.env.TRPC_URL!}>
             <body className={cn('min-h-screen font-sans antialiased', inter.className)}>
             <Navbar/>
             {children}
