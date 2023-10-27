@@ -1,6 +1,6 @@
 'use client'
 
-import {useRouter, useSearchParams} from 'next/navigation';
+import {notFound, useRouter, useSearchParams} from 'next/navigation';
 import {trpc} from '@/app/_trpc/client';
 import {Loader2} from 'lucide-react';
 
@@ -21,6 +21,8 @@ const AuthCallbackPage = () => {
     } else if (status === 'error') {
         if (error?.data?.code === 'UNAUTHORIZED') {
             router.push('/sign-in')
+        } else {
+            notFound()
         }
     }
 
