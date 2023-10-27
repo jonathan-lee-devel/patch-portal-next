@@ -10,21 +10,19 @@ const AuthCallbackPage = () => {
     const searchParams = useSearchParams()
     const origin = searchParams.get('origin')
 
-    trpc.authCallback.useQuery(undefined, {
-        onSuccess: ({success}) => {
-            if (success) {
-                // User is synced to db
-                router.push(origin ? `/${origin}` : '/dashboard')
-            }
-        },
-        onError: (err) => {
-            if (err.data?.code === 'UNAUTHORIZED') {
-                router.push('/sign-in')
-            }
-        },
+    const {data, status, error} = trpc.authCallback.useQuery(undefined, {
         retry: true,
         retryDelay: 500,
     })
+    if (status === 'success') {
+        if (data && data.success) {
+            router.push(origin ? `/${origin}`: '/dashboard')
+        }
+    } else if (status === 'error') {
+        if (error?.data?.code === 'UNAUTHORIZED') {
+            router.push('/sign-in')
+        }
+    }
 
     return (
         <>
