@@ -6,8 +6,8 @@ export interface User extends mongoose.Document {
 }
 
 const UserSchema = new mongoose.Schema<User>({
-    id: { type: String, unique: true, required: true },
-    email: { type: String, unique: true, required: true },
-})
+    id: {type: String, unique: true, required: true},
+    email: {type: String, unique: true, required: true},
+}, {timestamps: true})
 
 export default mongoose.models.User || mongoose.model<User>('User', UserSchema)
