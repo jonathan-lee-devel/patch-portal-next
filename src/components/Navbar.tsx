@@ -9,6 +9,7 @@ import {
 import { ArrowRight } from 'lucide-react'
 import UserAccountNav from './UserAccountNav'
 import MobileNav from './MobileNav'
+import {ThemeToggle} from '@/components/ThemeToggle';
 
 const Navbar = () => {
     const { getUser } = getKindeServerSession()
@@ -23,6 +24,7 @@ const Navbar = () => {
                         className='flex z-40 font-semibold'>
                         <span>PatchPortal</span>
                     </Link>
+                    <ThemeToggle />
 
                     <MobileNav isAuth={!!currentUser} />
 
