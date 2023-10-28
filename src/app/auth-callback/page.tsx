@@ -17,8 +17,6 @@ const AuthCallbackPage = () => {
     if (status === 'success') {
         if (data && data.success) {
             router.push(origin ? `/${origin}`: '/dashboard')
-        } else if (data && !data.success) {
-            notFound()
         }
     } else if (status === 'error') {
         if (error?.data?.code === 'UNAUTHORIZED') {
