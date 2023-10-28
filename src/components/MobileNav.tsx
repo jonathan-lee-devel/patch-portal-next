@@ -12,10 +12,6 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
 
     const pathname = usePathname()
 
-    useEffect(() => {
-        if (isOpen) toggleOpen()
-    }, [isOpen, pathname])
-
     const closeOnCurrent = (href: string) => {
         if (pathname === href) {
             toggleOpen()
@@ -39,9 +35,9 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                                         onClick={() =>
                                             closeOnCurrent('/sign-up')
                                         }
-                                        className='flex items-center w-full font-semibold text-green-600'
-                                        href='/'>
-                                        Get started
+                                        className='flex items-center w-full font-semibold'
+                                        href='/sign-up'>
+                                        Register
                                         <ArrowRight className='ml-2 h-5 w-5' />
                                     </Link>
                                 </li>
@@ -52,19 +48,8 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                                             closeOnCurrent('/sign-in')
                                         }
                                         className='flex items-center w-full font-semibold'
-                                        href='/'>
+                                        href='/sign-in'>
                                         Sign in
-                                    </Link>
-                                </li>
-                                <li className='my-3 h-px w-full bg-gray-300' />
-                                <li>
-                                    <Link
-                                        onClick={() =>
-                                            closeOnCurrent('/pricing')
-                                        }
-                                        className='flex items-center w-full font-semibold'
-                                        href='/'>
-                                        Pricing
                                     </Link>
                                 </li>
                             </>
