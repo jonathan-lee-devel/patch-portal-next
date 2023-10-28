@@ -1,8 +1,9 @@
 import {getKindeServerSession} from '@kinde-oss/kinde-auth-nextjs/server';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import {redirect} from 'next/navigation';
-import {db} from '@/db';
 import Dashboard from '@/components/Dashboard';
+import User from "@/db/models/User";
+import dbConnect from "@/lib/db-connect";
 
 const DashboardPage = async () => {
     const {getUser} = getKindeServerSession()
@@ -12,11 +13,8 @@ const DashboardPage = async () => {
         redirect('/auth-callback?origin=dashboard')
     }
 
-    const databaseUser = await db.user.findFirst({
-        where: {
-            id: currentUser.id,
-        },
-    })
+    await dbConnect()
+    const databaseUser = await User.findOne({id: currentUser.id}).exec()
 
     if (!databaseUser) {
         redirect('/auth-callback?origin=dashboard')
