@@ -13,7 +13,10 @@ export default function Home() {
           <h1 className={'max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'}>
               Coming Soon...
           </h1>
-          <Link href={'https://github.com/jonathan-lee-devel/patch-portal'} target={'_blank'} className={cn(buttonVariants({size: 'lg'}), 'mt-4')}>
+          <h3 className={'max-w-2xl text-3xl font-semibold md:text-4xl lg:text-5xl mt-2'}>
+              Feel free to register so you&apos;re ready to go when the site goes live!
+          </h3>
+          <Link href={'https://github.com/jonathan-lee-devel/patch-portal'} target={'_blank'} className={cn(buttonVariants({size: 'lg'}), 'mt-6')}>
               GitHub Repo
           </Link>
       </MaxWidthWrapper>
