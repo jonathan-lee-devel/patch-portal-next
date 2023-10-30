@@ -1,7 +1,7 @@
 import {privateProcedure, publicProcedure, router} from './trpc'
 import {getKindeServerSession} from '@kinde-oss/kinde-auth-nextjs/server';
 import {TRPCError} from '@trpc/server';
-import User from "@/db/models/User";
+import User from "@/models/User";
 import dbConnect from "@/lib/db-connect";
 
 export const appRouter = router({
