@@ -2,7 +2,7 @@ import {getKindeServerSession} from '@kinde-oss/kinde-auth-nextjs/server';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import {redirect} from 'next/navigation';
 import Dashboard from '@/components/Dashboard';
-import User from "@/db/models/User";
+import User from "@/models/User";
 import dbConnect from "@/lib/db-connect";
 
 const DashboardPage = async () => {
